@@ -1,0 +1,39 @@
+﻿
+@{ 
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section Footer{
+    Все права защищены.
+    }
+
+    <div>
+        <h3>Распродажа</h3>
+        <table>
+            <tr><td><p>Название книги</p></td>
+            <td><p>Автор</p></td>
+            <td><p>Цена</p></td></tr>
+            @foreach(MVC5ProjectV1.Models.Book a in Model)
+            {
+                <tr>
+                    <td><p>@a.Name</p></td>
+                    <td><p>@a.Author</p></td>
+                    <td><p>@a.Price</p></td>
+                    <td><p><a href="/Home/Buy/@a.ID">Купить</a></p></td>
+                </tr>
+            }
+            @Html.Partial("Partial")
+            @helper BookList(IEnumerable<MVC5ProjectV1.Models.Book> books) { 
+    <ul>
+            @foreach(MVC5ProjectV1.Models.Book b in books)
+            {
+                <li>@b.Name</li>
+            }
+            </ul>
+    }
+            @BookList(Model)
+            
+        </table>
+    </div>
+
+
